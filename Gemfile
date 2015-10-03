@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
 # Official Bootstrap Sass by twbs
 gem 'bootstrap-sass', '~> 3.3.5'
+# Font awesome
+gem 'font-awesome-sass', '~> 4.4.0'
 # Haml gem as required
 gem 'haml'
 # Use Uglifier as compressor for JavaScript assets
