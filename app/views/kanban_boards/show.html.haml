@@ -1,13 +1,16 @@
-%p#notice= notice
-%p
-  %strong Title:
-  = @kanban_board.title
-%p
-  %strong Description:
-  = @kanban_board.description
-%p
-  %strong Public visible:
-  = @kanban_board.public_visible
-= link_to 'Edit', edit_kanban_board_path(@kanban_board)
-|
-= link_to 'Back', kanban_boards_path
+.row
+  %p#notice= notice
+.row
+  %h1= @kanban_board.title
+  %p
+    %i= @kanban_board.description
+  - @kanban_board.default_columns.each do |col|
+    .col-md-3
+      .panel.panel-default
+        .panel-heading
+          .panel-title= t "activerecord.attributes.kanban_board.#{col}"
+        .panel-body
+          /render tasks with that status
+  = link_to 'Edit', edit_kanban_board_path(@kanban_board)
+  |
+  = link_to 'Back', kanban_boards_path

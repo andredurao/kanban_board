@@ -20,4 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      user: User
+      kanban_board: Board
+    attributes:
+      kanban_board:
+        title: Title
+        description: Description
+        public_visible: Public visible
+        todo: To-do
+        in_progress: In progress
+        to_verify: To verify
+        done: Done
