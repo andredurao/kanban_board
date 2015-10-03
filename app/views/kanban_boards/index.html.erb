@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Kanban Boards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Public visible</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @kanban_boards.each do |kanban_board| %>
+      <tr>
+        <td><%= kanban_board.title %></td>
+        <td><%= kanban_board.description %></td>
+        <td><%= kanban_board.public_visible %></td>
+        <td><%= link_to 'Show', kanban_board %></td>
+        <td><%= link_to 'Edit', edit_kanban_board_path(kanban_board) %></td>
+        <td><%= link_to 'Destroy', kanban_board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Kanban board', new_kanban_board_path %>
