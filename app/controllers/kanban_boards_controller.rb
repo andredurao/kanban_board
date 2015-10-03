@@ -4,7 +4,7 @@ class KanbanBoardsController < ApplicationController
   # GET /kanban_boards
   # GET /kanban_boards.json
   def index
-    @kanban_boards = KanbanBoard.all
+    @kanban_boards = user_signed_in? ? KanbanBoard.all : KanbanBoard.public_boards
   end
 
   # GET /kanban_boards/1
