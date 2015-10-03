@@ -3,7 +3,7 @@ class CreateKanbanBoards < ActiveRecord::Migration
     create_table :kanban_boards do |t|
       t.string :title
       t.string :description
-      t.boolean :public_visible
+      t.boolean :public_visible, default: true
 
       t.timestamps null: false
     end
