@@ -36,3 +36,7 @@ Setting bootstrap tables on kanban
 201510031827
 
 Adding task model and relationships with KanbanBoard model
+
+201510031848
+
+Adding Devise model User
