@@ -24,5 +24,11 @@ Converting kanban_board views to haml
 Setting kanban_board#index as root_url
 
 201510031258
+
 Configuring bootstrap-sass
 Adding navbar partial
+
+201510031337
+
+Setting stick footer
+Setting bootstrap tables on kanban

@@ -7,7 +7,7 @@
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
     %meta{:content => "Board test", :name => "description"}
     %meta{:content => "André Durão", :name => "author"}
-    %link{:href => "../../favicon.ico", :rel => "icon"}
+    /%link{:href => "favicon.ico", :rel => "icon"}
     %title Kanban Board test
     / HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
     /[if lt IE 9]
@@ -15,8 +15,10 @@
       %script{:src => "https://oss.maxcdn.com/respond/1.4.2/respond.min.js"}
 
     = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
     = render "shared/navbar"
-    = yield
+    .container#main-container
+      = yield
+    = render "shared/footer"
+    = javascript_include_tag 'application'
