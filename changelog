@@ -17,3 +17,8 @@ Adding haml Devise views
 201510031156
 
 Adding kanban_board model scaffold
+
+201510031208
+
+Converting kanban_board views to haml
+Setting kanban_board#index as root_url

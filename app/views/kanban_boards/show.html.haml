@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong Title:
+  = @kanban_board.title
+%p
+  %strong Description:
+  = @kanban_board.description
+%p
+  %strong Public visible:
+  = @kanban_board.public_visible
+= link_to 'Edit', edit_kanban_board_path(@kanban_board)
+|
+= link_to 'Back', kanban_boards_path

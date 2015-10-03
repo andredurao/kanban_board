@@ -1,0 +1,23 @@
+= form_for(@kanban_board) do |f|
+  - if @kanban_board.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@kanban_board.errors.count, "error")
+        prohibited this kanban_board from being saved:
+      %ul
+        - @kanban_board.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :title
+    %br/
+    = f.text_field :title
+  .field
+    = f.label :description
+    %br/
+    = f.text_field :description
+  .field
+    = f.label :public_visible
+    %br/
+    = f.check_box :public_visible
+  .actions
+    = f.submit
