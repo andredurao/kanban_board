@@ -1,0 +1,31 @@
+= form_for(@task, url: kanban_board_tasks_path) do |f|
+  - if @task.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@task.errors.count, "error")
+        prohibited this task from being saved:
+      %ul
+        - @task.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :title
+    %br/
+    = f.text_field :title
+  .field
+    = f.label :priority
+    %br/
+    = f.text_field :priority
+  .field
+    = f.label :current_status
+    %br/
+    = f.text_field :current_status
+  .field
+    = f.label :deleted
+    %br/
+    = f.check_box :deleted
+  .field
+    = f.label :hidden
+    %br/
+    = f.check_box :hidden
+  .actions
+    = f.submit

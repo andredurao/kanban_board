@@ -1,0 +1,22 @@
+%p#notice= notice
+%p
+  %strong Kanban board:
+  = @task.kanban_board
+%p
+  %strong Title:
+  = @task.title
+%p
+  %strong Priority:
+  = @task.priority
+%p
+  %strong Current status:
+  = @task.current_status
+%p
+  %strong Deleted:
+  = @task.deleted
+%p
+  %strong Hidden:
+  = @task.hidden
+= link_to 'Edit', edit_task_path(@task)
+|
+= link_to 'Back', tasks_path

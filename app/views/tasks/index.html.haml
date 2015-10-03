@@ -1,0 +1,24 @@
+%p#notice= notice
+%h1 Listing Tasks
+%table
+  %thead
+    %tr
+      %th Title
+      %th Priority
+      %th Current status
+      %th Deleted
+      %th Hidden
+      %th{:colspan => "3"}
+  %tbody
+    - @tasks.each do |task|
+      %tr
+        %td= task.title
+        %td= task.priority
+        %td= task.current_status
+        %td= task.deleted
+        %td= task.hidden
+        %td= link_to 'Show', kanban_board_task_path(@kanban_board,task)
+        %td= link_to 'Edit', edit_kanban_board_task_path(@kanban_board,task)
+        %td= link_to 'Destroy', kanban_board_task_path(@kanban_board,task), method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Task', new_kanban_board_task_path(@kanban_board)

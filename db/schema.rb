@@ -11,14 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151003145436) do
+ActiveRecord::Schema.define(version: 20151003210223) do
 
   create_table "kanban_boards", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.boolean  "public_visible"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.boolean  "public_visible", default: true
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "kanban_board_id"
+    t.string   "title"
+    t.string   "priority"
+    t.string   "current_status"
+    t.boolean  "deleted"
+    t.boolean  "hidden"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "tasks", ["kanban_board_id"], name: "index_tasks_on_kanban_board_id"
 
 end
