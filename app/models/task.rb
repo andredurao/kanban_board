@@ -7,8 +7,9 @@ class Task < ActiveRecord::Base
   # Scopes
 
   # Validations
-  validates :kanban_board_id, :title, :current_status, presence: true
-  validates :current_status, inclusion: { in: DEFAULT_PRIORITIES }#, message: "%{value} is not a valid size" }
+  validates :kanban_board_id, :title, :current_status, :priority, presence: true
+  validates :priority, inclusion: { in: DEFAULT_PRIORITIES }
+  validates :current_status, inclusion: { in: KanbanBoard::DEFAULT_COLUMNS}
 
   # private
 
