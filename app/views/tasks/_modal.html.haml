@@ -6,9 +6,30 @@
       .modal-header
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
-        %h4#myModalLabel.modal-title Modal title
+        %h4#myModalLabel.modal-title New task
       .modal-body
-        \...
+
+        %form
+          .field
+            %label{:for => "title"}= t "activerecord.attributes.task.title"
+            %br/
+            = text_field_tag :title
+          .field
+            %label{:for => "priority"}= t "activerecord.attributes.task.priority"
+            %br/
+            - Task::DEFAULT_PRIORITIES.each do |priority|
+              = radio_button_tag(:priority, priority)
+              %span.label{class: "label-#{task_class_by_priority(priority)}"}= priority
+          .field
+            %label{:for => "current_status"}= t "activerecord.attributes.task.current_status"
+            %br/
+            - @kanban_board.default_columns.each do |status|
+              = radio_button_tag(:current_status, status)
+              %span.label.label-default= t "activerecord.attributes.kanban_board.#{status}"
+          .actions
+            %button.btn.btn-default{:type => "button"} Submit
+
+
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
         %button.btn.btn-primary{:type => "button"} Save changes
