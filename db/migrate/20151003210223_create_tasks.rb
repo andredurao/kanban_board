@@ -5,8 +5,8 @@ class CreateTasks < ActiveRecord::Migration
       t.string :title
       t.string :priority
       t.string :current_status
-      t.boolean :deleted
-      t.boolean :hidden
+      t.boolean :deleted, default: false
+      t.boolean :hidden, default: false
 
       t.timestamps null: false
     end

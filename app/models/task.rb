@@ -5,6 +5,7 @@ class Task < ActiveRecord::Base
   belongs_to :kanban_board
 
   # Scopes
+  scope :of_status, ->(status) { where("current_status = ?", status) }
 
   # Validations
   validates :kanban_board_id, :title, :current_status, :priority, presence: true

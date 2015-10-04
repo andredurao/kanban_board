@@ -10,6 +10,10 @@
         .panel-heading
           .panel-title= t "activerecord.attributes.kanban_board.#{col}"
         .panel-body
+          - @kanban_board.tasks.of_status(col).each do |task|
+            .panel{class: "panel-#{task_class_by_priority(task.priority)}"}
+              .panel-heading
+                .panel-title= task.title
           /render tasks with that status
   = link_to 'Edit', edit_kanban_board_path(@kanban_board)
   |

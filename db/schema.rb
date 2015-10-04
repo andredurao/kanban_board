@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 20151003214243) do
     t.string   "title"
     t.string   "priority"
     t.string   "current_status"
-    t.boolean  "deleted"
-    t.boolean  "hidden"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.boolean  "deleted",         default: false
+    t.boolean  "hidden",          default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "tasks", ["kanban_board_id"], name: "index_tasks_on_kanban_board_id"
