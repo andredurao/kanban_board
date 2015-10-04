@@ -1,6 +1,4 @@
-/ Button trigger modal
-/ Modal
-#myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+#new-task-modal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", "data-kanban-board-id" => @kanban_board.id}
   .modal-dialog{:role => "document"}
     .modal-content
       .modal-header
@@ -8,7 +6,6 @@
           %span{"aria-hidden" => "true"} ×
         %h4#myModalLabel.modal-title New task
       .modal-body
-
         %form
           .field
             %label{:for => "title"}= t "activerecord.attributes.task.title"
@@ -26,10 +23,6 @@
             - @kanban_board.default_columns.each do |status|
               = radio_button_tag(:current_status, status)
               %span.label.label-default= t "activerecord.attributes.kanban_board.#{status}"
-          .actions
-            %button.btn.btn-default{:type => "button"} Submit
-
-
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
-        %button.btn.btn-primary{:type => "button"} Save changes
+        %button.btn.btn-primary#new-task-modal-submit{:type => "button"} Save changes
