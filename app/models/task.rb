@@ -8,6 +8,7 @@ class Task < ActiveRecord::Base
 
   # Validations
   validates :kanban_board_id, :title, :current_status, presence: true
+  validates :current_status, inclusion: { in: DEFAULT_PRIORITIES }#, message: "%{value} is not a valid size" }
 
   # private
 
