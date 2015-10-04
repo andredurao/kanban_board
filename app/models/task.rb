@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  DEFAULT_PRIORITIES = %i(low regular medium high critical)
+  DEFAULT_PRIORITIES = %w(low regular medium high critical)
 
   # Associations
   belongs_to :kanban_board

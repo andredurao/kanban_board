@@ -1,5 +1,5 @@
-class KanbanBoard < ActiveRecord::Base  
-  DEFAULT_COLUMNS = %i(todo in_progress to_verify done)
+class KanbanBoard < ActiveRecord::Base
+  DEFAULT_COLUMNS = %w(todo in_progress to_verify done)
 
   # Associations
   has_many :tasks

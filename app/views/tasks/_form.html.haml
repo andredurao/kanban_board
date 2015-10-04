@@ -20,5 +20,8 @@
   .field
     = f.label :current_status
     %br/
+    - @kanban_board.default_columns.each do |status|
+      = f.radio_button(:current_status, status)
+      %span.label.label-default= t "activerecord.attributes.kanban_board.#{status}"
   .actions
     = f.submit

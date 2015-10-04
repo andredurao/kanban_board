@@ -39,6 +39,4 @@ class TaskTest < ActiveSupport::TestCase
     task = board.tasks.new(current_status: "todo", priority: "low", title: "task test")
     assert task.save
   end
-
-
 end
