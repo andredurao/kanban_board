@@ -8,7 +8,11 @@
     .col-md-3
       .panel.panel-default
         .panel-heading
-          .panel-title= t "activerecord.attributes.kanban_board.#{col}"
+          .panel-title
+            = t "activerecord.attributes.kanban_board.#{col}"
+            %button.btn.btn-link.btn-sm.pull-right{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+              New task
+              =icon("arrow-circle-o-down")
         .panel-body
           - @kanban_board.tasks.of_status(col).each do |task|
             .panel{class: "panel-#{task_class_by_priority(task.priority)}"}
@@ -20,3 +24,4 @@
   = link_to 'Back', kanban_boards_path
   |
   = link_to 'Tasks', kanban_board_tasks_path(@kanban_board)
+= render "tasks/modal"
