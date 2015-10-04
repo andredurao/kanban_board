@@ -10,18 +10,18 @@
           .field
             %label{:for => "title"}= t "activerecord.attributes.task.title"
             %br/
-            = text_field_tag :title
+            = text_field_tag "[task][title]"
           .field
             %label{:for => "priority"}= t "activerecord.attributes.task.priority"
             %br/
             - Task::DEFAULT_PRIORITIES.each do |priority|
-              = radio_button_tag(:priority, priority)
+              = radio_button_tag("[task][priority]", priority)
               %span.label{class: "label-#{task_class_by_priority(priority)}"}= priority
           .field
             %label{:for => "current_status"}= t "activerecord.attributes.task.current_status"
             %br/
             - @kanban_board.default_columns.each do |status|
-              = radio_button_tag(:current_status, status)
+              = radio_button_tag("[task][current_status]", status)
               %span.label.label-default= t "activerecord.attributes.kanban_board.#{status}"
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
