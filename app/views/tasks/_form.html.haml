@@ -14,18 +14,11 @@
   .field
     = f.label :priority
     %br/
-    = f.text_field :priority
+    - @task.default_priorities.each do |priority|
+      = f.radio_button(:priority, priority)
+      %span.label{class: "label-#{task_class_by_priority(priority)}"}= priority
   .field
     = f.label :current_status
     %br/
-    = f.text_field :current_status
-  .field
-    = f.label :deleted
-    %br/
-    = f.check_box :deleted
-  .field
-    = f.label :hidden
-    %br/
-    = f.check_box :hidden
   .actions
     = f.submit

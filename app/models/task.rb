@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
   # Scopes
 
   # Validations
-  validates :title, presence: true
+  validates :kanban_board_id, :title, :current_status, presence: true
 
   # private
 
