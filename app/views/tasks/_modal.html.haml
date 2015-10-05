@@ -17,12 +17,7 @@
             - Task::DEFAULT_PRIORITIES.each do |priority|
               = radio_button_tag("[task][priority]", priority)
               %span.label{class: "label-#{task_class_by_priority(priority)}"}= priority
-          .field
-            %label{:for => "current_status"}= t "activerecord.attributes.task.current_status"
-            %br/
-            - @kanban_board.default_columns.each do |status|
-              = radio_button_tag("[task][current_status]", status)
-              %span.label.label-default= t "activerecord.attributes.kanban_board.#{status}"
+          = hidden_field_tag("[task][current_status]")
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
         %button.btn.btn-primary#new-task-modal-submit{:type => "button"} Save changes
