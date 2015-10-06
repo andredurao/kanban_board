@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :kanban_boards do
-    resources :tasks
+    resources :tasks do
+      post 'update_positions', on: :collection
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

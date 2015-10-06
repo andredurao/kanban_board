@@ -62,6 +62,17 @@ class TasksController < ApplicationController
     end
   end
 
+  # POST /tasks/update_positions.json
+  def update_positions
+    respond_to do |format|
+      reply = {message: "success"}
+      params[:positions].each_with_index do |task_id,i|
+        @kanban_board.tasks.find(task_id).update_attribute(:position, i)
+      end
+      format.json { render json: reply, status: :ok }
+    end
+  end
+
   private
     def set_kanban_board
       @kanban_board = KanbanBoard.find(params[:kanban_board_id])

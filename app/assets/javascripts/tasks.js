@@ -18,7 +18,6 @@ $("#new-task-modal-submit").on("click", function() {
 
   $.post("/kanban_boards/" + boardId + "/tasks.json", data).
   done(function(data) {
-      console.log("success");
       $('#new-task-modal').modal('hide');
       var compiled = _.template($("#task-template").html());
       compiled = compiled({
@@ -28,51 +27,48 @@ $("#new-task-modal-submit").on("click", function() {
       setupTasksDragNDrop();
     })
     .fail(function(data) {
-      console.log("error");
-      console.log(data);
       var errors = JSON.parse(data.responseText);
       var compiled = _.template($("#task-errors-template").html());
       compiled = compiled({
         data: errors
       });
       $("#new-task-modal .error-descriptions").html(compiled);
-    })
-    .always(function(data) {
-      console.log("finished");
     });
 });
+var uirec = 0;
+var uirstop = 0;
 
 function setupTasksDragNDrop() {
-  if ($(".task-draggable").data('draggable')) {
-    $(".task-draggable").draggable("destroy");
-    $(".task-droppable").droppable("destroy");
-  }
-
-  $(".task-draggable").draggable({
-    revert: "invalid"
-  });
-
-  $(".task-droppable").droppable({
-    hoverClass: "panel-drop-hover",
-    accept: ".task-draggable",
-    drop: function(event, ui) {
-      var draggableTaskId = $(ui.draggable).data("id");
-      var newTaskStatus = $(this).data("status");
+  $(".sortable-panel").sortable({
+    connectWith: ".sortable-panel",
+    stop: function(event, ui) {
+      console.log("receive");
+      var itemId = $(ui.item[0]).data("id")
+      var newTaskStatus = $(".panel[data-id='" + itemId + "']").parents(".panel-body").data("status");
       var boardId = $("#new-task-modal").data("kanban-board-id");
-      var data = {current_status: newTaskStatus};
-      // cloning and appending prevents the revert animation from still occurring
-      ui.draggable.clone(true).css('position', 'inherit').appendTo($(this));
-      ui.draggable.remove();
+      var data = {
+        current_status: newTaskStatus
+      };
       $.ajax({
-        url: "/kanban_boards/" + boardId + "/tasks/"+draggableTaskId+".json",
+        url: "/kanban_boards/" + boardId + "/tasks/" + itemId + ".json",
         data: JSON.stringify(data),
         type: 'PATCH',
         contentType: 'application/json',
         processData: false,
         dataType: 'json'
       });
+
+      var order = [];
+      $(".sortable-panel[data-status='" + newTaskStatus + "'] .task-draggable").each(function() {
+        order.push($(this).data("id"));
+      });
+      var positionsData = {
+        status: newTaskStatus,
+        positions: order
+      };
+      $.post("/kanban_boards/" + boardId + "/tasks/update_positions.json", positionsData);
     }
-  });
+  }).disableSelection();
 }
 
 setupTasksDragNDrop();
