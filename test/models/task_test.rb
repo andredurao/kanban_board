@@ -38,5 +38,18 @@ class TaskTest < ActiveSupport::TestCase
     assert board.save
     task = board.tasks.new(current_status: "todo", priority: "low", title: "task test")
     assert task.save
+    assert_equal task.position, 0
+  end
+
+  test "should increase positions on tasks" do
+    board = KanbanBoard.new(title: "abc", description: "abcd")
+    assert board.save
+    task = board.tasks.new(current_status: "todo", priority: "low", title: "task test")
+    assert task.save
+    assert_equal task.position, 0
+
+    task2 = board.tasks.new(current_status: "todo", priority: "high", title: "task test2")
+    assert task2.save
+    assert_equal task2.position, 1
   end
 end

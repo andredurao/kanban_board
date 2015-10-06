@@ -1,15 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  kanban_board_id: 
+  kanban_board_id:
   title: MyString
   priority: MyString
   current_status: MyString
+  position: 0
   deleted: false
   hidden: false
 
 two:
-  kanban_board_id: 
+  kanban_board_id:
   title: MyString
   priority: MyString
   current_status: MyString
