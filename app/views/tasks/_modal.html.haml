@@ -8,17 +8,19 @@
       .modal-body
         .row
           .error-descriptions
-        %form
-          .field
-            %label{:for => "title"}= t "activerecord.attributes.task.title"
-            %br/
-            = text_field_tag "[task][title]"
-          .field
-            %label{:for => "priority"}= t "activerecord.attributes.task.priority"
-            %br/
-            - Task::DEFAULT_PRIORITIES.each do |priority|
-              = radio_button_tag("[task][priority]", priority)
-              %span.label{class: "label-#{task_class_by_priority(priority)}"}= priority
+        %form.form-horizontal
+          .field.form-group
+            %label{:for => "title", class: "col-sm-2 control-label"}= t "activerecord.attributes.task.title"
+            .col-sm-10
+              = text_field_tag "[task][title]", nil, placeholder: "Title", class: "form-control"
+          .field.form-group
+            %label{:for => "priority", class: "col-sm-2 control-label"}= t "activerecord.attributes.task.priority"
+            .col-sm-10
+              .btn-group{data:{toggle:"buttons"}}
+                - Task::DEFAULT_PRIORITIES.each do |priority|
+                  %label{:for => "priority", class: "btn btn-#{task_class_by_priority(priority)}"}
+                    = radio_button_tag("[task][priority]", priority)
+                    = priority
           = hidden_field_tag("[task][current_status]")
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
