@@ -1,6 +1,5 @@
 <script type="text/template" id="task-template">
   <%
-    console.log(data);
     var priorityXRef = {
           "low": "success",
           "regular": "primary",
@@ -8,13 +7,13 @@
           "high": "warning",
           "critical": "danger"
        };
-    var priority = data["[task][priority]"];
+    var priority = data.priority;
     priority = priorityXRef[priority];
   %>
-  <div class="panel panel-<%= priority %>">
+  <div class="panel panel-<%= priority %> task-draggable" data-id="<%= data.id %>" data-kind="Task">
     <div class="panel-heading">
       <div class="panel-title">
-        <%= data["[task][title]"] %>
+        <%= data.title %>
       </div>
     </div>
   </div>

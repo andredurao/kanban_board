@@ -1,0 +1,14 @@
+<script type="text/template" id="task-errors-template">
+  <div class="col-md-12">
+    <% _.each(data, function(v, k){ %>
+      <p>
+        <%= k %>
+      </p>
+      <ul>
+        <% _.each(v, function(item){ %>
+        <li><%= item %></li>
+        <% }); %>
+      </ul>
+    <% }); %>
+  </div>
+</script>

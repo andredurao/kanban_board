@@ -6,6 +6,8 @@
           %span{"aria-hidden" => "true"} ×
         %h4#myModalLabel.modal-title New task
       .modal-body
+        .row
+          .error-descriptions
         %form
           .field
             %label{:for => "title"}= t "activerecord.attributes.task.title"

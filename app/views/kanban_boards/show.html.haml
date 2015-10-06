@@ -10,11 +10,11 @@
         .panel-heading
           .panel-title
             = t "activerecord.attributes.kanban_board.#{col}"
-            %button.btn.btn-link.btn-sm.pull-right{"data-target" => "#new-task-modal", "data-status" => col, :type => "button", "data-toggle" => "tooltip", "data-placement" => "top", "title" => "New task"}
+            %button.btn.btn-link.btn-sm.pull-right{"data-target-modal" => "#new-task-modal", "data-status" => col, :type => "button", "data-toggle" => "tooltip", "data-placement" => "top", "title" => "New task"}
               =icon("plus-square")
-        .panel-body{"data-status" => col}
+        .panel-body.task-droppable{"data-status" => col}
           - @kanban_board.tasks.of_status(col).each do |task|
-            .panel{class: "panel-#{task_class_by_priority(task.priority)}"}
+            .panel{:class => "panel-#{task_class_by_priority(task.priority)} task-draggable", "data-id" => task.id, "data-kind" => "Task"}
               .panel-heading
                 .panel-title= task.title
           /render tasks with that status
@@ -26,3 +26,4 @@
   = link_to 'Tasks', kanban_board_tasks_path(@kanban_board)
 = render "tasks/modal"
 = render text: File.read("#{Rails.root}/app/views/shared/_task_underscore_template.html").html_safe
+= render text: File.read("#{Rails.root}/app/views/shared/_task_errors_template.html").html_safe
