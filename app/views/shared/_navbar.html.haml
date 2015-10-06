@@ -6,8 +6,8 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      =link_to(root_url, class: "navbar-brand") do
-        =icon("tasks")
+      = link_to(root_url, class: "navbar-brand") do
+        = icon("tasks")
         Kanban Boards
 
     #navbar.navbar-collapse.collapse
@@ -19,5 +19,13 @@
             = f.password_field(:email, placeholder: "Password", class: "form-control")
           = f.submit("Sign in", class: "btn btn-success")
           = link_to(new_registration_path(:user), class: "btn btn-primary") do
-            =icon("user-plus")
+            = icon("user-plus")
             Sign up
+      - else
+        %form.navbar-form.navbar-right
+          .form-group.gravatar-container
+            = image_tag(avatar_url(current_user), class: "img-circle", size: "32x32")
+          .form-group
+            = link_to(destroy_user_session_path(@user), class: "btn btn-default btn-sm pull-right", method: :delete) do
+              = icon("exclamation-circle")
+              Log out
