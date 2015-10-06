@@ -10,9 +10,10 @@
             = t "activerecord.attributes.kanban_board.#{col}"
             %button.btn.btn-link.btn-sm.pull-right{"data-target-modal" => "#new-task-modal", "data-status" => col, :type => "button", "data-toggle" => "tooltip", "data-placement" => "top", "title" => "New task"}
               =icon("plus-square")
-        .panel-body.task-droppable{"data-status" => col}
+        .panel-body.task-droppable.sortable-panel{"data-status" => col}
+          %br
           - @kanban_board.tasks.of_status(col).each do |task|
-            .panel{:class => "panel-#{task_class_by_priority(task.priority)} task-draggable", "data-id" => task.id, "data-kind" => "Task"}
+            .panel.task-draggable{:class => "panel-#{task_class_by_priority(task.priority)}", "data-id" => task.id, "data-kind" => "Task"}
               .panel-heading
                 .panel-title= task.title
           /render tasks with that status
