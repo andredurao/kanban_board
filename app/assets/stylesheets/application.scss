@@ -27,6 +27,11 @@
 }
 
 .field_with_errors{
-  display: inline;
-  border: 1px solid red;
+  input{
+    background-color: #ffdfe1;
+  }
+}
+
+.panel-drop-hover{
+  background-color: #d5f2ff;
 }

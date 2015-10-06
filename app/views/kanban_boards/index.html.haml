@@ -1,6 +1,9 @@
 .row
   %p#notice= notice
 .row
+  = link_to new_kanban_board_path do
+    = icon("plus-square-o")
+    New Kanban Board
   %h1 Listing Kanban Boards
   %table.table.table-hover.table-striped
     %thead
@@ -12,11 +15,9 @@
     %tbody
       - @kanban_boards.each do |kanban_board|
         %tr
-          %td= kanban_board.title
+          %td= link_to kanban_board.title, kanban_board
           %td= kanban_board.description
-          %td= kanban_board.public_visible
-          %td= link_to 'Show', kanban_board
-          %td= link_to 'Edit', edit_kanban_board_path(kanban_board)
-          %td= link_to 'Destroy', kanban_board, method: :delete, data: { confirm: 'Are you sure?' }
+          %td= icon("eye#{"-slash" unless kanban_board.public_visible}")
+          %td= link_to icon("pencil"), edit_kanban_board_path(kanban_board)
+          %td= link_to icon("trash"), kanban_board, method: :delete, data: { confirm: 'Are you sure?' }
   %br/
-  = link_to 'New Kanban board', new_kanban_board_path
