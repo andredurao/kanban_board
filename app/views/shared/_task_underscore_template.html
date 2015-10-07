@@ -14,6 +14,9 @@
     <div class="panel-heading">
       <div class="panel-title">
         <%= data.title %>
+        <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/kanban_boards/<%= data.kanban_board_id %>/tasks/<%= data.id %>">
+          <i class="fa fa-trash pull-right"></i>
+        </a>
       </div>
     </div>
   </div>
