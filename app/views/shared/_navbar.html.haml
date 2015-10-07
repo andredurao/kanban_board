@@ -24,7 +24,8 @@
       - else
         %form.navbar-form.navbar-right
           .form-group.gravatar-container
-            = image_tag(avatar_url(current_user), class: "img-circle", size: "32x32")
+            = link_to(edit_user_registration_path(current_user)) do
+              = image_tag(avatar_url(current_user), class: "img-circle", size: "32x32")
           .form-group
             = link_to(destroy_user_session_path(@user), class: "btn btn-default btn-sm pull-right", method: :delete) do
               = icon("exclamation-circle")
